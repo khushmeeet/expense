@@ -7,13 +7,14 @@
 //
 
 import UIKit
+import RealmSwift
 
 class ExpenseTableViewController: UITableViewController {
-    var expenseList: [Expense] = []
+    var expenseList: Results<Expense>?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        expenseList = returnExpenseList()
+        expenseList = try! Realm().objects(Expense.self)
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -21,18 +22,18 @@ class ExpenseTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return expenseList.count
+        return expenseList!.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let expenseCell = tableView.dequeueReusableCell(withIdentifier: "expenseCellReuseIdentifier", for: indexPath)
-        let expense = expenseList[indexPath.row]
+        let expense = expenseList![indexPath.row]
         expenseCell.textLabel?.text = expense.name
         return expenseCell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let expense = expenseList[indexPath.row]
+        let expense = expenseList![indexPath.row]
         performSegue(withIdentifier: "showEditExpense", sender: expense)
     }
     
@@ -48,17 +49,4 @@ class ExpenseTableViewController: UITableViewController {
             }
         }
     }
-    
-    func returnExpenseList() -> [Expense] {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd/MM/yyyy"
-        let expenseTime = formatter.date(from: "07/10/2108")
-        
-        let firstExpense = Expense(name: "Movie Tickets for Fantastic Beasts 2", date: expenseTime! , category: "Movie Ticket", amount: 330.50)
-        let secondExpense = Expense(name: "Groceries", date: expenseTime! , category: "Home Expense", amount: 672.29)
-        let thirdExpense = Expense(name: "Red Dead Redemption 2", date: expenseTime! , category: "Online Purchase", amount: 3980)
-        
-        return [firstExpense, secondExpense, thirdExpense]
-    }
-    
 }

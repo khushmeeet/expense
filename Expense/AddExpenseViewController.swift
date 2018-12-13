@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class AddExpenseViewController: UIViewController {
     
@@ -24,10 +25,23 @@ class AddExpenseViewController: UIViewController {
     }
     
     @IBAction func addExpense(_ sender: Any) {
-        let expense = Expense(name: expenseName.text!, date: formatter.date(from: expenseDate.text!)!, category: expenseCategory.text!, amount: Float(expenseAmount.text!)!)
-        expenseListScreen.expenseList.append(expense)
+        let realm = try! Realm()
+        let expense = newExpense(name: expenseName.text!, date: expenseDate.text!, category: expenseCategory.text!, amount: expenseAmount.text!)
+        try! realm.write {
+            realm.add(expense)
+        }
         expenseListScreen.tableView.reloadData()
         navigationController?.popViewController(animated: true)
+    }
+    
+    func newExpense(name: String, date: String, category: String, amount: String) -> Expense {
+        let expense = Expense()
+        expense.name = name
+        expense.date = formatter.date(from: date)!
+        expense.category = category
+        expense.amount = Double(amount)!
+        
+        return expense
     }
     
 }
