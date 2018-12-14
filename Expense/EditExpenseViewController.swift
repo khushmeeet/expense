@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class EditExpenseViewController: UIViewController {
     
@@ -21,6 +22,7 @@ class EditExpenseViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        dateFormatter.dateFormat = "dd/MM/yyyy"
         expenseName.text = selectedExpense.name
         expenseCategory.text = selectedExpense.category
         expenseDate.text = dateFormatter.string(from: selectedExpense.date)
@@ -28,6 +30,17 @@ class EditExpenseViewController: UIViewController {
     }
     
     @IBAction func editExpense(_ sender: Any) {
+        let realm = try! Realm()
+        if let expense = realm.object(ofType: Expense.self, forPrimaryKey: selectedExpense.id) {
+            try! realm.write {
+                expense.name = expenseName.text!
+                expense.category = expenseCategory.text!
+                expense.date = dateFormatter.date(from: expenseDate.text!)!
+                expense.amount = Double(expenseAmount.text!)!
+            }
+            expenseListScreen.tableView.reloadData()
+            navigationController?.popViewController(animated: true)
+        }
     }
     
 }

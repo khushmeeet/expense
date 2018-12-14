@@ -37,6 +37,21 @@ class ExpenseTableViewController: UITableViewController {
         performSegue(withIdentifier: "showEditExpense", sender: expense)
     }
     
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        let realm = try! Realm()
+        if let expense = realm.object(ofType: Expense.self, forPrimaryKey: expenseList![indexPath.row].id) {
+            try! realm.write {
+                realm.delete(expense)
+            }
+            self.tableView.reloadData()
+            navigationController?.popViewController(animated: true)
+        }
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let addExpenseScreen = segue.destination as? AddExpenseViewController {
             addExpenseScreen.expenseListScreen = self

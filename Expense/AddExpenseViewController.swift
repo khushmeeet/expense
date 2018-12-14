@@ -12,7 +12,7 @@ import RealmSwift
 class AddExpenseViewController: UIViewController {
     
     var expenseListScreen = ExpenseTableViewController()
-    let formatter = DateFormatter()
+    let dateFormatter = DateFormatter()
     
     @IBOutlet weak var expenseName: UITextField!
     @IBOutlet weak var expenseCategory: UITextField!
@@ -21,12 +21,12 @@ class AddExpenseViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        formatter.dateFormat = "dd/MM/yyyy"
+        dateFormatter.dateFormat = "dd/MM/yyyy"
     }
     
     @IBAction func addExpense(_ sender: Any) {
-        let realm = try! Realm()
         let expense = newExpense(name: expenseName.text!, date: expenseDate.text!, category: expenseCategory.text!, amount: expenseAmount.text!)
+        let realm = try! Realm()
         try! realm.write {
             realm.add(expense)
         }
@@ -37,10 +37,9 @@ class AddExpenseViewController: UIViewController {
     func newExpense(name: String, date: String, category: String, amount: String) -> Expense {
         let expense = Expense()
         expense.name = name
-        expense.date = formatter.date(from: date)!
+        expense.date = dateFormatter.date(from: date)!
         expense.category = category
         expense.amount = Double(amount)!
-        
         return expense
     }
     
