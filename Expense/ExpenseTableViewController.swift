@@ -15,6 +15,7 @@ class ExpenseTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.prefersLargeTitles = true
         dateFormatter.dateFormat = "dd/MM/yyyy"
         expenseList = try! Realm().objects(Expense.self)
     }
