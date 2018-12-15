@@ -21,6 +21,7 @@ class EditExpenseViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.largeTitleDisplayMode = .never
         expenseName.text = selectedExpense.name
         expenseCategory.text = selectedExpense.category
         expenseDate.setDate(selectedExpense.date, animated: true)

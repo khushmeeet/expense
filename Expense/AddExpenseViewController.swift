@@ -14,6 +14,7 @@ class AddExpenseViewController: UIViewController {
     var expenseListScreen = ExpenseTableViewController()
     var date: Date = Date(timeIntervalSinceReferenceDate: 290000)
     
+    
     @IBOutlet weak var expenseName: UITextField!
     @IBOutlet weak var expenseCategory: UITextField!
     @IBOutlet weak var expenseAmount: UITextField!
@@ -21,6 +22,8 @@ class AddExpenseViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
+        navigationItem.largeTitleDisplayMode = .never
     }
     
     @IBAction func getDateFromDatePicker(_ sender: Any) {
@@ -43,6 +46,7 @@ class AddExpenseViewController: UIViewController {
         expense.name = name
         expense.date = date
         expense.category = category
+        print(amount)
         expense.amount = Double(amount)!
         return expense
     }
