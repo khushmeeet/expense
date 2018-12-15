@@ -16,6 +16,7 @@ class ExpenseTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.prefersLargeTitles = true
+        setNavigationBarWithSearch()
         dateFormatter.dateFormat = "dd/MM/yyyy"
         expenseList = try! Realm().objects(Expense.self)
     }
@@ -70,5 +71,10 @@ class ExpenseTableViewController: UITableViewController {
                 editExpenseScreen.expenseListScreen = self
             }
         }
+    }
+    
+    func setNavigationBarWithSearch() {
+        let searchController = UISearchController(searchResultsController: nil)
+        navigationItem.searchController = searchController
     }
 }
