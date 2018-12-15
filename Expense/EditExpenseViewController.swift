@@ -13,19 +13,17 @@ class EditExpenseViewController: UIViewController {
     
     var expenseListScreen = ExpenseTableViewController()
     var selectedExpense = Expense()
-    let dateFormatter = DateFormatter()
     
     @IBOutlet weak var expenseName: UITextField!
     @IBOutlet weak var expenseCategory: UITextField!
-    @IBOutlet weak var expenseDate: UITextField!
     @IBOutlet weak var expenseAmount: UITextField!
+    @IBOutlet weak var expenseDate: UIDatePicker!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        dateFormatter.dateFormat = "dd/MM/yyyy"
         expenseName.text = selectedExpense.name
         expenseCategory.text = selectedExpense.category
-        expenseDate.text = dateFormatter.string(from: selectedExpense.date)
+        expenseDate.setDate(selectedExpense.date, animated: true)
         expenseAmount.text = String(selectedExpense.amount)
     }
     
@@ -35,12 +33,11 @@ class EditExpenseViewController: UIViewController {
             try! realm.write {
                 expense.name = expenseName.text!
                 expense.category = expenseCategory.text!
-                expense.date = dateFormatter.date(from: expenseDate.text!)!
+                expense.date = expenseDate.date
                 expense.amount = Double(expenseAmount.text!)!
             }
             expenseListScreen.tableView.reloadData()
             navigationController?.popViewController(animated: true)
         }
     }
-    
 }
