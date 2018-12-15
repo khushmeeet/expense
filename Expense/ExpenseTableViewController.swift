@@ -11,9 +11,11 @@ import RealmSwift
 
 class ExpenseTableViewController: UITableViewController {
     var expenseList: Results<Expense>?
+    var dateFormatter = DateFormatter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        dateFormatter.dateFormat = "dd/MM/yyyy"
         expenseList = try! Realm().objects(Expense.self)
     }
     
@@ -26,9 +28,13 @@ class ExpenseTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let expenseCell = tableView.dequeueReusableCell(withIdentifier: "expenseCellReuseIdentifier", for: indexPath)
+        let expenseCell = tableView.dequeueReusableCell(withIdentifier: "expenseCellReuseIdentifier", for: indexPath) as! ExpenseViewCell
+        print(expenseCell)
         let expense = expenseList![indexPath.row]
-        expenseCell.textLabel?.text = expense.name
+        expenseCell.expenseName.text = expense.name
+        expenseCell.expenseCategory.text = expense.category
+        expenseCell.expenseDate.text = dateFormatter.string(from: expense.date)
+        expenseCell.expenseAmount.text = String(expense.amount)
         return expenseCell
     }
     
@@ -41,7 +47,7 @@ class ExpenseTableViewController: UITableViewController {
         return true
     }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: ExpenseViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         let realm = try! Realm()
         if let expense = realm.object(ofType: Expense.self, forPrimaryKey: expenseList![indexPath.row].id) {
             try! realm.write {
