@@ -22,5 +22,10 @@ class ExpenseViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
+    
+    func formatExpenseAmount(_ prefix:String, for price:Double) {
+        let amountString = String(format: "%2.2f", price)
+        expenseAmount.text = prefix + amountString
+    }
 
 }

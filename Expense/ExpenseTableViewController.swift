@@ -37,6 +37,7 @@ class ExpenseTableViewController: UITableViewController {
         expenseCell.expenseCategory.text = expense.category
         expenseCell.expenseDate.text = dateFormatter.string(from: expense.date)
         expenseCell.expenseAmount.text = String(expense.amount)
+        expenseCell.formatExpenseAmount("₹", for: expense.amount)
         return expenseCell
     }
     
