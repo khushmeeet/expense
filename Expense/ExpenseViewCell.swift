@@ -27,5 +27,5 @@ class ExpenseViewCell: UITableViewCell {
         let amountString = String(format: "%2.2f", price)
         expenseAmount.text = prefix + amountString
     }
-
+    
 }
