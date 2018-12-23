@@ -17,7 +17,8 @@ class ExpenseTableViewController: UITableViewController {
         super.viewDidLoad()
         navigationController?.navigationBar.prefersLargeTitles = true
         setNavigationBarWithSearch()
-        dateFormatter.dateFormat = "dd/MM/yyyy"
+        dateFormatter.dateStyle = .long
+        dateFormatter.locale = Locale(identifier: "en_US")
         expenseList = try! Realm().objects(Expense.self)
     }
     
@@ -80,13 +81,13 @@ class ExpenseTableViewController: UITableViewController {
     
     func setExpenseAmount(expenseCell: ExpenseViewCell, expense: Expense) -> ExpenseViewCell {
         if expense.txnType == "c" {
-            expenseCell.expenseAmount.backgroundColor = UIColor.green
+            expenseCell.expenseAmount.backgroundColor = UIColor(red:0.30, green:0.85, blue:0.39, alpha:1.0)
         } else {
-            expenseCell.expenseAmount.backgroundColor = UIColor.red
+            expenseCell.expenseAmount.backgroundColor = UIColor(red:1.00, green:0.23, blue:0.19, alpha:1.0)
         }
         expenseCell.expenseAmount.clipsToBounds = true
-        expenseCell.expenseAmount.layer.cornerRadius = 6.0
-        expenseCell.expenseAmount.text = String(expense.amount)
+        expenseCell.expenseAmount.layer.cornerRadius = 4.0
+        expenseCell.expenseAmount.text = "₹" + String(format: "%2.2f", expense.amount)
         return expenseCell
     }
 }
