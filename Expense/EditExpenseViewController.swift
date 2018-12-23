@@ -18,6 +18,7 @@ class EditExpenseViewController: UIViewController, UIPickerViewDataSource, UIPic
     @IBOutlet weak var expenseCategoryPicker: UIPickerView!
     @IBOutlet weak var expenseAmount: UITextField!
     @IBOutlet weak var expenseDate: UIDatePicker!
+    @IBOutlet weak var expenseType: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +28,7 @@ class EditExpenseViewController: UIViewController, UIPickerViewDataSource, UIPic
         
         expenseName.text = selectedExpense.name
         expenseCategoryPicker.selectRow(expenseCategories.index(where: {$0.categoryName == selectedExpense.category})!, inComponent: 0, animated: true)
+        expenseType.text = selectedExpense.txnType
         expenseDate.setDate(selectedExpense.date, animated: true)
         expenseAmount.text = String(selectedExpense.amount)
     }
@@ -37,6 +39,7 @@ class EditExpenseViewController: UIViewController, UIPickerViewDataSource, UIPic
             try! realm.write {
                 expense.name = expenseName.text!
                 expense.category = expenseCategories[expenseCategoryPicker.selectedRow(inComponent: 0)].categoryName
+                expense.txnType = expenseType.text!
                 expense.date = expenseDate.date
                 expense.amount = Double(expenseAmount.text!)!
             }
