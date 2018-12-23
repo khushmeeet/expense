@@ -14,11 +14,14 @@ struct ExpenseCategory {
 }
 
 let expenseCategories = [
-    ExpenseCategory(categoryName: "a", categoryId: 1),
-    ExpenseCategory(categoryName: "b", categoryId: 1),
-    ExpenseCategory(categoryName: "c", categoryId: 1),
-    ExpenseCategory(categoryName: "d", categoryId: 1),
-    ExpenseCategory(categoryName: "e", categoryId: 1),
-    ExpenseCategory(categoryName: "f", categoryId: 1)
+    ExpenseCategory(categoryName: "Debt: Given", categoryId: 1),
+    ExpenseCategory(categoryName: "Debt: Taken", categoryId: 2),
+    ExpenseCategory(categoryName: "Online: Amazon", categoryId: 3),
+    ExpenseCategory(categoryName: "Online: Others", categoryId: 4),
+    ExpenseCategory(categoryName: "Online: Flipkart", categoryId: 5),
+    ExpenseCategory(categoryName: "Food Delivery: Swiggy", categoryId: 6),
+    ExpenseCategory(categoryName: "Food Delivery: Zomato", categoryId: 7),
+    ExpenseCategory(categoryName: "Dine: Out", categoryId: 8),
+    ExpenseCategory(categoryName: "Dine: Party", categoryId: 9)
 ]
 
