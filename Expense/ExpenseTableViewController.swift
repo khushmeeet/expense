@@ -36,9 +36,8 @@ class ExpenseTableViewController: UITableViewController {
         expenseCell.expenseName.text = expense.name
         expenseCell.expenseCategory.text = expense.category
         expenseCell.expenseDate.text = dateFormatter.string(from: expense.date)
-        expenseCell.expenseAmount.text = String(expense.amount)
         expenseCell.formatExpenseAmount("₹", for: expense.amount)
-        return expenseCell
+        return setExpenseAmount(expenseCell: expenseCell, expense: expense)
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -77,5 +76,17 @@ class ExpenseTableViewController: UITableViewController {
     func setNavigationBarWithSearch() {
         let searchController = UISearchController(searchResultsController: nil)
         navigationItem.searchController = searchController
+    }
+    
+    func setExpenseAmount(expenseCell: ExpenseViewCell, expense: Expense) -> ExpenseViewCell {
+        if expense.txnType == "c" {
+            expenseCell.expenseAmount.backgroundColor = UIColor.green
+        } else {
+            expenseCell.expenseAmount.backgroundColor = UIColor.red
+        }
+        expenseCell.expenseAmount.clipsToBounds = true
+        expenseCell.expenseAmount.layer.cornerRadius = 6.0
+        expenseCell.expenseAmount.text = String(expense.amount)
+        return expenseCell
     }
 }
