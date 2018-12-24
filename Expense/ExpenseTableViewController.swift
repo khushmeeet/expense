@@ -81,7 +81,7 @@ class ExpenseTableViewController: UITableViewController {
     }
     
     func setExpenseAmount(expenseCell: ExpenseViewCell, expense: Expense) -> ExpenseViewCell {
-        if expense.txnType == "c" {
+        if expense.txnType == 1 {
             expenseCell.expenseAmount.backgroundColor = UIColor(red:0.30, green:0.85, blue:0.39, alpha:1.0)
         } else {
             expenseCell.expenseAmount.backgroundColor = UIColor(red:1.00, green:0.23, blue:0.19, alpha:1.0)

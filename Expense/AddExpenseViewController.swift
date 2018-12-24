@@ -19,7 +19,7 @@ class AddExpenseViewController: UIViewController, UIPickerViewDataSource, UIPick
     @IBOutlet weak var expenseCategoryPicker: UIPickerView!
     @IBOutlet weak var expenseAmount: UITextField!
     @IBOutlet weak var datePicker: UIDatePicker!
-    @IBOutlet weak var expenseType: UITextField!
+    @IBOutlet weak var isExpenseCredit: UISwitch!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +35,14 @@ class AddExpenseViewController: UIViewController, UIPickerViewDataSource, UIPick
     }
     
     @IBAction func addExpense(_ sender: Any) {
-        let expense = newExpense(name: expenseName.text!, date: date, category: expenseCategories[expenseCategoryPicker.selectedRow(inComponent: 0)].categoryName, txnType: expenseType.text!, amount: expenseAmount.text!)
+        var txnType = 0
+        if isExpenseCredit.isOn {
+            txnType = 1
+        } else {
+            txnType = 0
+        }
+        
+        let expense = newExpense(name: expenseName.text!, date: date, category: expenseCategories[expenseCategoryPicker.selectedRow(inComponent: 0)].categoryName, txnType: txnType, amount: expenseAmount.text!)
         let realm = try! Realm()
         try! realm.write {
             expense.id = incrementId()
@@ -57,7 +64,7 @@ class AddExpenseViewController: UIViewController, UIPickerViewDataSource, UIPick
         return expenseCategories[row].categoryName
     }
     
-    func newExpense(name: String, date: Date, category: String, txnType: String, amount: String) -> Expense {
+    func newExpense(name: String, date: Date, category: String, txnType: Int, amount: String) -> Expense {
         let expense = Expense()
         expense.name = name
         expense.date = date

@@ -14,7 +14,7 @@ class Expense: Object {
     @objc dynamic var name = ""
     @objc dynamic var date = Date()
     @objc dynamic var category = ""
-    @objc dynamic var txnType = ""
+    @objc dynamic var txnType = 0
     @objc dynamic var amount = 0.0
     
     override static func primaryKey() -> String? {

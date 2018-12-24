@@ -10,24 +10,24 @@ import UIKit
 import RealmSwift
 
 class ShowBalanceViewController: UIViewController {
-    
-    var expenseList: Results<Expense>?
-    var balance = 0.0
 
     @IBOutlet weak var totalBalance: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        var expenseList: Results<Expense>?
+        var balance = 0.0
         expenseList = try! Realm().objects(Expense.self)
-        
         for item in expenseList! {
-            if item.txnType == "c" {
+            if item.txnType == 1 {
                 balance += item.amount
             } else {
                 balance -= item.amount
             }
         }
-        
         formatTotalBalance(prefix: "₹", for: balance)
     }
     
