@@ -10,6 +10,7 @@ import UIKit
 import RealmSwift
 
 class ExpenseTableViewController: UITableViewController {
+    
     var expenseList: Results<Expense>?
     var dateFormatter = DateFormatter()
     
