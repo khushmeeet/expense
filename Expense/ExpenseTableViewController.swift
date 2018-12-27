@@ -86,6 +86,7 @@ class ExpenseTableViewController: UITableViewController {
         } else {
             expenseCell.expenseAmount.backgroundColor = UIColor(red:1.00, green:0.23, blue:0.19, alpha:1.0)
         }
+        expenseCell.expenseAmount.textColor = UIColor.white
         expenseCell.expenseAmount.clipsToBounds = true
         expenseCell.expenseAmount.layer.cornerRadius = 4.0
         expenseCell.expenseAmount.text = "₹" + String(format: "%2.2f", expense.amount)
