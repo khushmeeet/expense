@@ -26,6 +26,7 @@ class EditExpenseViewController: UIViewController, UIPickerViewDataSource, UIPic
         navigationItem.largeTitleDisplayMode = .never
         self.expenseCategoryPicker.dataSource = self
         self.expenseCategoryPicker.delegate = self
+        self.expenseAmount.keyboardType = UIKeyboardType.decimalPad
         
         expenseName.text = selectedExpense.name
         expenseCategoryPicker.selectRow(expenseCategories.index(where: {$0.categoryName == selectedExpense.category})!, inComponent: 0, animated: true)

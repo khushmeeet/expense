@@ -28,6 +28,7 @@ class AddExpenseViewController: UIViewController, UIPickerViewDataSource, UIPick
         self.expenseCategoryPicker.delegate = self
         expenseCategoryPicker.selectRow(3, inComponent: 0, animated: true)
         navigationItem.largeTitleDisplayMode = .never
+        self.expenseAmount.keyboardType = UIKeyboardType.decimalPad
     }
     
     @IBAction func getDateFromDatePicker(_ sender: Any) {
