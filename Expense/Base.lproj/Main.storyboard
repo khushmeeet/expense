@@ -169,7 +169,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZL8-ds-jH1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1818" y="1198"/>
+            <point key="canvasLocation" x="625" y="972"/>
         </scene>
         <!--Add Expense View Controller-->
         <scene sceneID="XrR-OX-b7R">
@@ -264,21 +264,54 @@
             </objects>
             <point key="canvasLocation" x="1524" y="150"/>
         </scene>
-        <!--View Controller-->
+        <!--Expense Analysis View Controller-->
         <scene sceneID="La2-Yg-cN4">
             <objects>
-                <viewController id="zTB-vE-D0c" sceneMemberID="viewController">
+                <viewController id="zTB-vE-D0c" customClass="ExpenseAnalysisViewController" customModule="Expense" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7pF-KK-WEE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="391-ok-nxe">
+                                <rect key="frame" x="0.0" y="123" width="375" height="216"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            </pickerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Total Expenditure" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ncV-5H-hxa">
+                                <rect key="frame" x="72" y="515" width="231" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EVl-qQ-DVd">
+                                <rect key="frame" x="130" y="579" width="114" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="21"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Yq-bL-dUE">
+                                <rect key="frame" x="145" y="347" width="84" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                <state key="normal" title="Calculate"/>
+                                <connections>
+                                    <action selector="calculateExpenditure:" destination="zTB-vE-D0c" eventType="touchUpInside" id="a3p-UR-j3C"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="GP1-ZO-hKv"/>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="recents" id="S3Z-E5-BCT"/>
+                    <connections>
+                        <outlet property="categoryExpenditure" destination="EVl-qQ-DVd" id="mT2-qn-Cg9"/>
+                        <outlet property="expenseCategoryPicker" destination="391-ok-nxe" id="b7f-dm-GYa"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Wb-pa-JOB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1434" y="1675"/>
+            <point key="canvasLocation" x="-1434.4000000000001" y="1674.384236453202"/>
         </scene>
         <!--Account Balance-->
         <scene sceneID="ZWo-y0-fgY">
