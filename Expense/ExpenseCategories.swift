@@ -30,6 +30,7 @@ let expenseCategories = [
     ExpenseCategory(categoryName: "ATM: Withdrawl", categoryId: 14),
     ExpenseCategory(categoryName: "ATM: Deposit", categoryId: 15),
     ExpenseCategory(categoryName: "Tez Offer", categoryId: 16),
-    ExpenseCategory(categoryName: "Balance Fix", categoryId: 17)
+    ExpenseCategory(categoryName: "In Wallet", categoryId: 17),
+    ExpenseCategory(categoryName: "Balance Fix", categoryId: 18)
 ]
 
