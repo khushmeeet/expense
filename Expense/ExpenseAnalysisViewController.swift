@@ -26,13 +26,9 @@ class ExpenseAnalysisViewController: UIViewController, UIPickerViewDataSource, U
         let selectedCategory = expenseCategories[expenseCategoryPicker.selectedRow(inComponent: 0)].categoryName
         let expensesOfCategory = try! Realm().objects(Expense.self).filter("category = %@", selectedCategory)
         for item in expensesOfCategory {
-            if item.txnType == 1 {
-                expenditure += item.amount
-            } else {
-                expenditure -= item.amount
-            }
+            expenditure += item.amount
         }
-        formatExpenditure(prefix: "₹", for: expenditure)
+        categoryExpenditure.text = expenditure.formattedWithSeparator
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -46,10 +42,5 @@ class ExpenseAnalysisViewController: UIViewController, UIPickerViewDataSource, U
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return expenseCategories[row].categoryName
     }
-    
-    func formatExpenditure(prefix:String, for expenditure:Double) {
-        categoryExpenditure.text = prefix + String(format: "%2.2f", expenditure)
-    }
-    
 
 }

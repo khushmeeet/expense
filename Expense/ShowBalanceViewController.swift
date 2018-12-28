@@ -28,11 +28,7 @@ class ShowBalanceViewController: UIViewController {
                 balance -= item.amount
             }
         }
-        formatTotalBalance(prefix: "₹", for: balance)
-    }
-    
-    func formatTotalBalance(prefix:String, for balance:Double) {
-        totalBalance.text = prefix + String(format: "%2.2f", balance)
+        totalBalance.text = balance.formattedWithSeparator
     }
 
 }

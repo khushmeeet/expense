@@ -18,6 +18,7 @@
 		63AFF42221C7813D00F1AEA1 /* ExpenseCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AFF42121C7813D00F1AEA1 /* ExpenseCategories.swift */; };
 		63AFF42A21D1808800F1AEA1 /* ShowBalanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AFF42921D1808800F1AEA1 /* ShowBalanceViewController.swift */; };
 		63AFF42C21D53ADD00F1AEA1 /* ExpenseAnalysisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AFF42B21D53ADD00F1AEA1 /* ExpenseAnalysisViewController.swift */; };
+		63AFF42E21D6A0A300F1AEA1 /* NumberFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AFF42D21D6A0A300F1AEA1 /* NumberFormat.swift */; };
 		63D149A521C5244F009BAAC1 /* ExpenseViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D149A421C5244F009BAAC1 /* ExpenseViewCell.swift */; };
 		D4B2853BCAE62554399B65FA /* Pods_Expense.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFB753F03E0A7A5F5DE402F9 /* Pods_Expense.framework */; };
 /* End PBXBuildFile section */
@@ -37,6 +38,7 @@
 		63AFF42121C7813D00F1AEA1 /* ExpenseCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseCategories.swift; sourceTree = "<group>"; };
 		63AFF42921D1808800F1AEA1 /* ShowBalanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowBalanceViewController.swift; sourceTree = "<group>"; };
 		63AFF42B21D53ADD00F1AEA1 /* ExpenseAnalysisViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseAnalysisViewController.swift; sourceTree = "<group>"; };
+		63AFF42D21D6A0A300F1AEA1 /* NumberFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFormat.swift; sourceTree = "<group>"; };
 		63D149A421C5244F009BAAC1 /* ExpenseViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseViewCell.swift; sourceTree = "<group>"; };
 		CFB753F03E0A7A5F5DE402F9 /* Pods_Expense.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Expense.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E71E5D23B94216B4E918EA26 /* Pods-Expense.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Expense.release.xcconfig"; path = "Pods/Target Support Files/Pods-Expense/Pods-Expense.release.xcconfig"; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 				63D149A421C5244F009BAAC1 /* ExpenseViewCell.swift */,
 				6374FBD121C049F600E4C553 /* Expense.swift */,
 				63AFF42121C7813D00F1AEA1 /* ExpenseCategories.swift */,
+				63AFF42D21D6A0A300F1AEA1 /* NumberFormat.swift */,
 				6374FBC121BF0ADB00E4C553 /* Main.storyboard */,
 				6374FBC421BF0ADC00E4C553 /* Assets.xcassets */,
 				6374FBC621BF0ADC00E4C553 /* LaunchScreen.storyboard */,
@@ -209,7 +212,6 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Expense/Pods-Expense-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Format/Format.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 			);
@@ -217,7 +219,6 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Format.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 			);
@@ -234,6 +235,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				63AFF42A21D1808800F1AEA1 /* ShowBalanceViewController.swift in Sources */,
+				63AFF42E21D6A0A300F1AEA1 /* NumberFormat.swift in Sources */,
 				6374FBD621C04A6100E4C553 /* EditExpenseViewController.swift in Sources */,
 				63AFF42221C7813D00F1AEA1 /* ExpenseCategories.swift in Sources */,
 				6374FBD221C049F600E4C553 /* Expense.swift in Sources */,
