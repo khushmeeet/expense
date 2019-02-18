@@ -11,7 +11,7 @@ import RealmSwift
 
 class ExpenseTableViewController: UITableViewController {
     
-    var expenseList: Results<Expense>?
+    var expenseList: [Expense] = []
     var dateFormatter = DateFormatter()
     
     override func viewDidLoad() {
@@ -20,7 +20,7 @@ class ExpenseTableViewController: UITableViewController {
         setNavigationBarWithSearch()
         dateFormatter.dateStyle = .long
         dateFormatter.locale = Locale(identifier: "en_US")
-        expenseList = try! Realm().objects(Expense.self)
+        expenseList = try! Realm().objects(Expense.self).reversed()
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -28,13 +28,12 @@ class ExpenseTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return expenseList!.count
+        return expenseList.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let expenseCell = tableView.dequeueReusableCell(withIdentifier: "expenseCellReuseIdentifier", for: indexPath) as! ExpenseViewCell
-        print(expenseCell)
-        let expense = expenseList![indexPath.row]
+        let expense = expenseList[indexPath.row]
         expenseCell.expenseName.text = expense.name
         expenseCell.expenseCategory.text = expense.category
         expenseCell.expenseDate.text = dateFormatter.string(from: expense.date)
@@ -43,7 +42,7 @@ class ExpenseTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let expense = expenseList![indexPath.row]
+        let expense = expenseList[indexPath.row]
         performSegue(withIdentifier: "showEditExpense", sender: expense)
     }
     
@@ -53,7 +52,7 @@ class ExpenseTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: ExpenseViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         let realm = try! Realm()
-        if let expense = realm.object(ofType: Expense.self, forPrimaryKey: expenseList![indexPath.row].id) {
+        if let expense = realm.object(ofType: Expense.self, forPrimaryKey: expenseList[indexPath.row].id) {
             try! realm.write {
                 realm.delete(expense)
             }
